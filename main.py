@@ -43,7 +43,7 @@ times = []
 download = []
 upload = []
 
-style.use('ggplot')
+style.use('seaborn-ticks')
 fig = plt.figure()
 ax1 = fig.add_subplot(1,2,1)
 ax2 = fig.add_subplot(1,2,2)
@@ -69,7 +69,8 @@ def animate(i):
 
                     spl = make_interp_spline(times, download, k=3)
                     downloadsmooth = spl(xnew)
-
+                    downloadaverage = sum(download) / len(download)
+                    uploadaverage = sum(upload) / len(upload)
                     spl2 = make_interp_spline(times,upload,k=3)
                     uploadsmooth = spl2(xnew)
                     ax1.clear()
@@ -77,6 +78,10 @@ def animate(i):
                     #print(times, "\n", download, "\n", upload)
                     ax1.plot(xnew, downloadsmooth, label='download', color='#b52871')
                         ##F5B14C')
+                    ax1.axhline(y=downloadaverage,color = 'pink',linestyle = 'dashed')
+                    ax1.annotate(f'Average Download Rate = {round(downloadaverage,2)} Mb/s',xy=(20,downloadaverage*.9),xycoords = 'data')
+                    ax2.axhline(y=uploadaverage,color = 'pink',linestyle = 'dashed')
+                    ax2.annotate(f'Average Download Rate = {round(uploadaverage,2)} Mb/s',xy=(20,uploadaverage*.9),xycoords = 'data')
                     ax2.plot(xnew, uploadsmooth, label='upload', color='#2CBDFE')
                     #ax1.plot(times,download)
                     #ax1.plot(times,upload)
