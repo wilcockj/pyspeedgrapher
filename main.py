@@ -31,7 +31,7 @@ def testspeed():
                 "upspeed": upspeed
             })
             #csv_writer.writerow(time_now,downspeed,upspeed)
-            print("added row",time_now)
+            print(f"added row at {time_now}\nDownload Speed {downspeed}\nUpload Speed {upspeed}")
             # 60 seconds sleep
             speedcsv.close()
             time.sleep(20)
@@ -79,9 +79,9 @@ def animate(i):
                     ax1.plot(xnew, downloadsmooth, label='download', color='#b52871')
                         ##F5B14C')
                     ax1.axhline(y=downloadaverage,color = 'pink',linestyle = 'dashed')
-                    ax1.annotate(f'Average Download Rate = {round(downloadaverage,2)} Mb/s',xy=(80,downloadaverage*.9),xycoords = 'data')
+                    ax1.annotate(f'Average Download Rate = {round(downloadaverage,2)} Mb/s',xy=(30,downloadaverage),xytext = (-75,-50), textcoords='offset points',xycoords = 'data',arrowprops=dict(arrowstyle="->"))
                     ax2.axhline(y=uploadaverage,color = 'pink',linestyle = 'dashed')
-                    ax2.annotate(f'Average Download Rate = {round(uploadaverage,2)} Mb/s',xy=(80,uploadaverage),xytext = (0,-20), textcoords='offset points',xycoords = 'data',arrowprops=dict(arrowstyle="->"))
+                    ax2.annotate(f'Average Upload Rate = {round(uploadaverage,2)} Mb/s',xy=(30,uploadaverage),xytext = (-75,-50), textcoords='offset points',xycoords = 'data',arrowprops=dict(arrowstyle="->"))
                     ax2.plot(xnew, uploadsmooth, label='upload', color='#2CBDFE')
                     #ax1.plot(times,download)
                     #ax1.plot(times,upload)
